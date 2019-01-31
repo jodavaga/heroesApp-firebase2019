@@ -49,6 +49,7 @@ export class HeroesService {
 
     return this.http.get( url )
           .pipe( map( resp => {
+              console.log(resp.json())
               return resp.json()
           }));
   }

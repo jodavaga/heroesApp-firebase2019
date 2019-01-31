@@ -10,16 +10,18 @@ import { HeroesService } from '../../services/heroes.service';
 })
 export class HeroesComponent implements OnInit {
 
-  heroes:Heroe[] = [];
+  heroes:any[] = [];
 
   constructor( private _heroesService: HeroesService ) { }
 
   ngOnInit() {
 
     this._heroesService.getHeroes()
-            .subscribe( heroes => {
-              this.heroes = heroes
-            })
+      .subscribe( data => {
+        this.heroes = data
+        
+
+    })
   }
 
 }

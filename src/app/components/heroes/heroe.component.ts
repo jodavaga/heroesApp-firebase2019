@@ -69,7 +69,10 @@ export class HeroeComponent implements OnInit {
 
   }
 
-  reset( formulario: NgForm){
+  agregarNuevo( formulario: NgForm){
+
+    this.router.navigate(['heroe', 'nuevo'])
+
     formulario.reset({
       casa: "Marvel"
     })
