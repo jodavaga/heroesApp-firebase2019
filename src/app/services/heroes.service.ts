@@ -15,6 +15,8 @@ export class HeroesService {
 
   constructor( private http:Http ) { }
 
+
+  // Agrego un unevo heroe a la base de datos, pasandole el Heroe en el body
   nuevoHeroe( heroe: Heroe){
 
     let body = JSON.stringify( heroe );
@@ -29,6 +31,7 @@ export class HeroesService {
     }));     
   }
 
+  // Se actualiza la info del heroe especifico, con el mismo key$, ID
   actualizarHeroe( heroe:Heroe, key:string ){
      let body = JSON.stringify( heroe );
 
@@ -38,6 +41,25 @@ export class HeroesService {
                 .pipe( map( resp => {
                     return resp.json()
                   }));
+  }
+
+  // Obtengo solo un dato, deacuerdo al ID, Key$ asignado por firebase
+  getHeroe( id:string ){
+    let url = `${ this.heroeUrl }/${ id }.json`
+
+    return this.http.get( url )
+          .pipe( map( resp => {
+              return resp.json()
+          }));
+  }
+
+  // Obtengo todos los datos de la base de datos
+  getHeroes(){
+
+    return this.http.get( this.heroesUrl )
+            .pipe( map( resp => {
+                return resp.json()
+            }));
   }
 
 }

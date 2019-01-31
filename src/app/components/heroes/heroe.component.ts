@@ -14,6 +14,7 @@ import { HeroesService } from "../../services/heroes.service";
 })
 export class HeroeComponent implements OnInit {
 
+  // Heroe Local
   heroe:Heroe = {
     nombre: '',
     bio: '',
@@ -27,7 +28,7 @@ export class HeroeComponent implements OnInit {
                private router:Router,
                private activatedRoute:ActivatedRoute
               ) { 
-  
+  // Obtengo parametros por URL 
   this.activatedRoute.params.subscribe( params => {
     console.log(params)
     if (params.id == "nuevo" ){
@@ -36,6 +37,10 @@ export class HeroeComponent implements OnInit {
     }else {
       this.nuevo = false;
       this.id = params.id
+
+      // Obtengo el heroe con el ID del parametro de URL y se lo asigno al heroe local
+      this._heroesService.getHeroe( this.id )
+          .subscribe( heroe => this.heroe = heroe) 
     }
   })
 
@@ -46,18 +51,19 @@ export class HeroeComponent implements OnInit {
 
   guardar(){
 
+    // Si el parametro de URL es=nuevo entonces esta agregando un heroe nuevo.
     if(this.nuevo){
       this._heroesService.nuevoHeroe( this.heroe )
           .subscribe( data => {
-            console.log( data )
             this.router.navigate(['/heroe', data.name ])
   
           }, error => console.log(error));
 
+    // Si el parametro es diferente, es porq esta actualizando un heroe existente
     }else {
       this._heroesService.actualizarHeroe( this.heroe, this.id )
             .subscribe( heroe => {
-              console.log(heroe)
+              this.heroe = heroe.json()
             })
     }
 
