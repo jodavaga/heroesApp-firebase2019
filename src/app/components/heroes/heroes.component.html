@@ -30,9 +30,9 @@
                 <td>{{ heroes[k].casa }}</td>
                 <td>
                     <button [routerLink]="['/heroe', k]"
-                            (click)="editar(k)"
                             class="btn btn-outline-primary btn-sm"> Editar </button>
-                    <button class="btn btn-outline-danger btn-sm"> Eliminar </button>
+                    <button (click)="eliminar(k)"
+                            class="btn btn-outline-danger btn-sm"> Eliminar </button>
 
                 </td>
                 </tr>

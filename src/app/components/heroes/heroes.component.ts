@@ -25,8 +25,19 @@ export class HeroesComponent implements OnInit {
     })
   }
 
-  editar( heroe:string ){
-    console.log( heroe )
+  eliminar( key:string ){
+
+    this._heroesService.eliminarHeroe( key )
+        .subscribe( resp => {
+
+          // no es necesario volver a llamar al servicio que carga heroes. se elimina el objeto con la KEY
+          // y se le dice al PIPE que no se puro para que escuche los cambios
+          if( resp ){
+            console.error( resp );
+          }else {
+            delete this.heroes[ key ]
+          }
+        })
   }
 
 }
