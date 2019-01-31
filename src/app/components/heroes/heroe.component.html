@@ -1,8 +1,15 @@
-<h3>Heroe <small>nombre---</small></h3>
+<h3>Heroe <small> {{ heroe.nombre }}</small></h3>
 <button type="button"
         class="btn btn-outline-danger"
         [routerLink]="['heroes']">
   Regresar
+</button>
+
+<button type="button"
+        class="btn btn-outline-success"
+        [routerLink]="['/heroe', 'nuevo']"
+        (click)="reset(forma)">
+  Agregar nuevo
 </button>
 <hr>
 

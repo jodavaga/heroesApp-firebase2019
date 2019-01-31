@@ -63,10 +63,16 @@ export class HeroeComponent implements OnInit {
     }else {
       this._heroesService.actualizarHeroe( this.heroe, this.id )
             .subscribe( heroe => {
-              this.heroe = heroe.json()
+              this.heroe = heroe
             })
     }
 
+  }
+
+  reset( formulario: NgForm){
+    formulario.reset({
+      casa: "Marvel"
+    })
   }
 
 }
