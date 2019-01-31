@@ -10,7 +10,7 @@ export class KeysPipe implements PipeTransform {
     let keys = [];
 
     for(let k in value){
-      keys.push( value[k] )
+      keys.push( k )
     }
 
     return keys;

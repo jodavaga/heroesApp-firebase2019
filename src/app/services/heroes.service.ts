@@ -3,7 +3,6 @@ import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 
 import { Heroe } from '../interfaces/heroe.interface';
-import { ɵKeyEventsPlugin } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
